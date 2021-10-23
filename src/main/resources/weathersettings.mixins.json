@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "package": "com.weathersettings.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "refmap": "weathersettings.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

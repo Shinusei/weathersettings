@@ -24,8 +24,8 @@ public class CommonConfiguration
 
         builder.comment("Weather entries, format: [\"command;weight;duration in seconds;clear weather afterwards duration in seconds\"].");
         weatherEntries = builder.defineList("weatherEntries",
-          Arrays.asList("weather rain;100;500;3000",
-            "weather thunder;20;300;2000")
+          Arrays.asList("weather rain;100;500;5000",
+            "weather thunder;20;300;4000")
           , e -> e instanceof String);
 
         // Escapes the current category level

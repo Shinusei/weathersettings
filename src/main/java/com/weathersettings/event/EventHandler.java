@@ -5,8 +5,8 @@ import com.weathersettings.weather.WeatherHandler;
 import net.minecraft.world.level.GameRules;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fmlserverevents.FMLServerStartedEvent;
 
 /**
  * Forge event bus handler, ingame events are fired here
@@ -31,7 +31,7 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public static void onStart(final FMLServerStartedEvent event)
+    public static void onStart(final ServerStartedEvent event)
     {
         if (!WeatherSettingsMod.config.getCommonConfig().skipWeatherOnSleep.get())
         {

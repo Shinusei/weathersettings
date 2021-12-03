@@ -2,7 +2,7 @@ package com.weathersettings.weather;
 
 import com.weathersettings.WeatherSettingsMod;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;

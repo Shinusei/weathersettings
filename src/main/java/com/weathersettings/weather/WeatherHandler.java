@@ -3,6 +3,7 @@ package com.weathersettings.weather;
 import com.weathersettings.WeatherSettingsMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.server.ServerLifecycleHooks;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,8 @@ public class WeatherHandler
      * Weather config data
      */
     private final static List<WeatherCommandEntry> weatherEntries = new ArrayList<>();
-    private static int weightSum = 0;
-    private static String clearCommand = "";
+    private static       int                       weightSum      = 0;
+    private static       String                    clearCommand   = "";
 
     /**
      * Current weather
@@ -22,9 +23,11 @@ public class WeatherHandler
     private static long                nextChangeMilis = 0;
     private static WeatherCommandEntry currentWeather  = null;
 
+    private static WeatherCommandEntry NONE = new WeatherCommandEntry("", 0, 0, 1000000);
 
     /**
      * Called on world tick
+     *
      * @param event
      */
     public static void onServerTick(final TickEvent.ServerTickEvent event)
@@ -69,11 +72,12 @@ public class WeatherHandler
      * Random the next weather entry
      * @return next entry
      */
+    @NotNull
     private static WeatherCommandEntry chooseNextWeather()
     {
         if (weightSum == 0)
         {
-            return null;
+            return NONE;
         }
 
         int currentWeight = 0;
@@ -88,7 +92,7 @@ public class WeatherHandler
             }
         }
 
-        return null;
+        return NONE;
     }
 
     /**
@@ -152,7 +156,7 @@ public class WeatherHandler
                 continue;
             }
 
-            weatherEntries.add(new WeatherCommandEntry(command,duration,weight,clearDuration));
+            weatherEntries.add(new WeatherCommandEntry(command, duration, weight, clearDuration));
             weightSum += weight;
         }
 
@@ -161,14 +165,24 @@ public class WeatherHandler
     }
 
     /**
+     * Initial delay on server start
+     */
+    public static void onServerStart()
+    {
+        final WeatherCommandEntry rndWeather = chooseNextWeather();
+        int clearDuration = (int) (WeatherSettingsMod.rand.nextInt(rndWeather.clearDuration / 2) + rndWeather.clearDuration * 0.75);
+        nextChangeMilis = System.currentTimeMillis() + clearDuration * 1000L;
+    }
+
+    /**
      * Data class for weather command entries
      */
     static class WeatherCommandEntry
     {
         final String command;
-        final int duration;
-        final int weight;
-        final int clearDuration;
+        final int    duration;
+        final int    weight;
+        final int    clearDuration;
 
         private WeatherCommandEntry(final String command, final int duration, final int weight, final int clearDuration)
         {
@@ -177,6 +191,5 @@ public class WeatherHandler
             this.weight = weight;
             this.clearDuration = clearDuration;
         }
-
     }
 }

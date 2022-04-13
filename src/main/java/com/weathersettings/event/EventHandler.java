@@ -37,5 +37,6 @@ public class EventHandler
         {
             event.getServer().getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(false, event.getServer());
         }
+        WeatherHandler.onServerStart();
     }
 }

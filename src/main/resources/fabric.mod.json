@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "weathersettings",
+  "version": "${version}",
+
+  "name": "Weathercontrol Mod",
+  "description": "Takes control of weather intervals",
+  "authors": [
+    "Someaddons"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "ARR",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.weathersettings.WeatherSettingsMod"
+    ]
+  },
+  "mixins": [
+    "weathersettings.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

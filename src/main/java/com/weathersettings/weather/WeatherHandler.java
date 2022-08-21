@@ -39,7 +39,7 @@ public class WeatherHandler
             if(currentWeather == null)
             {
                 currentWeather = chooseNextWeather();
-                if (currentWeather == null)
+                if (currentWeather == NONE)
                 {
                     return;
                 }
@@ -50,7 +50,7 @@ public class WeatherHandler
                     nextChangeMilis = System.currentTimeMillis() + duration * 1000L;
                     ServerLifecycleHooks.getCurrentServer()
                       .getCommands()
-                      .performCommand(ServerLifecycleHooks.getCurrentServer().createCommandSourceStack(), currentWeather.command + " " + duration);
+                      .performPrefixedCommand(ServerLifecycleHooks.getCurrentServer().createCommandSourceStack(), currentWeather.command + " " + duration);
                 }
             }
             else
@@ -61,7 +61,7 @@ public class WeatherHandler
                     nextChangeMilis = System.currentTimeMillis() + clearDuration * 1000L;
                     ServerLifecycleHooks.getCurrentServer()
                       .getCommands()
-                      .performCommand(ServerLifecycleHooks.getCurrentServer().createCommandSourceStack(), clearCommand + " " + clearDuration * 2);
+                      .performPrefixedCommand(ServerLifecycleHooks.getCurrentServer().createCommandSourceStack(), clearCommand + " " + clearDuration * 2);
                 }
                 currentWeather = null;
             }

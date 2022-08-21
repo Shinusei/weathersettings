@@ -28,6 +28,7 @@ public class WeatherSettingsMod implements ModInitializer
         ServerTickEvents.END_SERVER_TICK.register(EventHandler::onServerTick);
         ServerTickEvents.START_SERVER_TICK.register(EventHandler::onStart);
         LOGGER.info(MODID + " mod initialized");
+        config.load();
         WeatherHandler.parseConfig();
     }
 }

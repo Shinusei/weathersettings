@@ -4,7 +4,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.weathersettings.WeatherSettingsMod;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec2;
@@ -45,7 +45,7 @@ public class WeatherHandler
             if (currentWeather == null)
             {
                 currentWeather = chooseNextWeather();
-                if (currentWeather == null)
+                if (currentWeather == NONE)
                 {
                     return;
                 }
@@ -74,7 +74,7 @@ public class WeatherHandler
 
     private static CommandSourceStack createStack(final MinecraftServer server)
     {
-        return new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, server.overworld(), 4, "Server", new TextComponent("weathersettings"), server, (Entity) null);
+        return new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, server.overworld(), 4, "Server", Component.literal("weathersettings"), server, (Entity) null);
     }
 
     /**

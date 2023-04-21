@@ -3,13 +3,10 @@ package com.weathersettings;
 import com.weathersettings.config.Configuration;
 import com.weathersettings.event.ClientEventHandler;
 import com.weathersettings.event.EventHandler;
-import com.weathersettings.event.ModEventHandler;
-import com.weathersettings.weather.WeatherHandler;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -32,9 +29,7 @@ public class WeatherSettingsMod
     public WeatherSettingsMod()
     {
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> "", (c, b) -> true));
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, config.getCommonConfig().ForgeConfigSpecBuilder);
 
-        Mod.EventBusSubscriber.Bus.MOD.bus().get().register(ModEventHandler.class);
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(EventHandler.class);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -49,7 +44,7 @@ public class WeatherSettingsMod
 
     private void setup(final FMLCommonSetupEvent event)
     {
+        config.load();
         LOGGER.info(MODID + " mod initialized");
-        WeatherHandler.parseConfig();
     }
 }

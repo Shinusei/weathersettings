@@ -121,8 +121,7 @@ public class WeatherHandler
      */
     public void onServerStart()
     {
-        final WeatherEntry rndWeather = chooseNextWeather();
-        int clearDuration = (int) (WeatherSettingsMod.rand.nextInt(rndWeather.clearDuration / 2) + rndWeather.clearDuration * 0.75);
-        nextChangeMilis = System.currentTimeMillis() + clearDuration * 1000L;
+        currentWeather = chooseNextWeather();
+        nextChangeMilis = System.currentTimeMillis() + 10 * 1000L;
     }
 }

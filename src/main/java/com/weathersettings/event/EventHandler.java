@@ -48,6 +48,10 @@ public class EventHandler
         {
             server.getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(false, server);
         }
+        else
+        {
+            server.getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(true, server);
+        }
 
         handlers.clear();
         for (final Level level : server.getAllLevels())

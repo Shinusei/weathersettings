@@ -28,7 +28,6 @@ public class EventHandler
     {
         try
         {
-
             for (final ServerLevel level : event.getServer().getAllLevels())
             {
                 WeatherHandler handler = handlers.get(level.dimension());
@@ -51,6 +50,10 @@ public class EventHandler
         if (!WeatherSettingsMod.config.getCommonConfig().skipWeatherOnSleep)
         {
             event.getServer().getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(false, event.getServer());
+        }
+        else
+        {
+            event.getServer().getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(true, event.getServer());
         }
 
         handlers.clear();

@@ -1,6 +1,7 @@
 package com.weathersettings;
 
-import com.weathersettings.config.Configuration;
+import com.cupboard.config.CupboardConfig;
+import com.weathersettings.config.CommonConfiguration;
 import com.weathersettings.event.ClientEventHandler;
 import com.weathersettings.event.EventHandler;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,10 +22,10 @@ import static com.weathersettings.WeatherSettingsMod.MODID;
 @Mod(MODID)
 public class WeatherSettingsMod
 {
-    public static final String        MODID  = "weathersettings";
-    public static final Logger        LOGGER = LogManager.getLogger();
-    public static       Configuration config = new Configuration();
-    public static       Random        rand   = new Random();
+    public static final String                              MODID  = "weathersettings";
+    public static final Logger                              LOGGER = LogManager.getLogger();
+    public static       CupboardConfig<CommonConfiguration> config = new CupboardConfig<>(MODID, new CommonConfiguration());
+    public static       Random                              rand   = new Random();
 
     public WeatherSettingsMod()
     {
@@ -44,7 +45,6 @@ public class WeatherSettingsMod
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        config.load();
         LOGGER.info(MODID + " mod initialized");
     }
 }

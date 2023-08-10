@@ -1,5 +1,6 @@
 package com.weathersettings.config;
 
+import com.cupboard.config.ICommonConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -9,13 +10,13 @@ import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 
 import java.util.*;
 
-public class CommonConfiguration
+public class CommonConfiguration implements ICommonConfig
 {
     public boolean                         skipWeatherOnSleep   = false;
     public Map<String, List<WeatherEntry>> worldWeatherSettings = new HashMap<>();
     public String                          clearWeatherCommand  = "weather clear";
 
-    protected CommonConfiguration()
+    public CommonConfiguration()
     {
         worldWeatherSettings.put(BuiltinDimensionTypes.OVERWORLD.location().toString(), Arrays.asList(new WeatherEntry("rain", "weather rain", 100, 300, 3600),
           new WeatherEntry("thunder", "weather thunder", 20, 200, 3600)));

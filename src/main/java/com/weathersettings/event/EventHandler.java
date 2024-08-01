@@ -8,9 +8,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +24,7 @@ public class EventHandler
     private static Map<ResourceKey<Level>, WeatherHandler> handlers = new HashMap<>();
 
     @SubscribeEvent
-    public static void onServerTick(final TickEvent.ServerTickEvent event)
+    public static void onServerTick(final ServerTickEvent.Post event)
     {
         try
         {
